@@ -1,0 +1,107 @@
+@use '../abstracts/' as *;
+
+.main {
+    margin-top: 2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.4rem;
+    &__operations {
+        @include boxContent(default);
+
+        &__top {
+            @include topTitle;
+        }
+
+        &__form {
+            @include form;
+        }
+
+        &__results {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            &__text {
+                &--value {
+                    margin-top: 0.5rem;
+                    display: flex;
+                    gap: 0.5rem;
+                    span {
+                        color: var(--highlight);
+                    }
+                }
+            }
+
+            &__total {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                border: 1px dashed var(--blue);
+                gap: 1rem;
+                text-transform: uppercase;
+                border-radius: 3px;
+                margin-bottom: 1rem;
+                p {
+                    font-weight: 600;
+                    letter-spacing: 0.4rem;
+                    font-size: 1.5rem;
+                }
+                .h2 {
+                    @include fontStyle(h3);
+                }
+            }
+        }
+    }
+
+    &__results {
+        @include boxContent(results);
+        &__top {
+            .h2 {
+                color: #fff;
+            }
+            @include topTitle;
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 1rem 0;
+            background-image: url(../img/btcBig.svg);
+            background-repeat: no-repeat; 
+            padding: 2rem 0;
+            &__item {
+                display: flex;
+                justify-content: space-between;
+
+                &:not(:last-child) {
+                    border-bottom: 2px dashed #fff;
+                    padding-bottom: 1.2rem;
+                }
+                &--text {
+                    display: flex;
+                    margin: auto auto 0 0;
+                    p {
+                        font-size: 2rem;
+                        color: #fff;
+                        font-family: var(--title);
+                        text-transform: capitalize;
+                        font-weight: 700;
+                        margin-left: 1rem;
+                        font-size: map-get($fontSize, h2);
+                    }
+                }
+                &--value {
+                    .price {
+                        font-weight: 700;
+                        font-family: var(--title);
+                        color: var(--green);
+                        font-size: map-get($fontSize, price);
+                    }
+                }
+            }
+        }
+    }
+}

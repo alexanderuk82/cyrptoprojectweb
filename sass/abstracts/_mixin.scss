@@ -1,0 +1,215 @@
+@use '../abstracts/variables' as *;
+
+@mixin fontStyle($style) {
+    text-transform: capitalize;
+    font-family: var(--title);
+
+    @if ($style == h1) {
+        font-size: map-get($fontSize, h1);
+        padding: 2rem;
+    }
+    @if ($style == h2) {
+        font-size: map-get($fontSize, h2);
+        font-weight: 700;
+    }
+    @if ($style == h2-section) {
+        font-size: map-get($fontSize, h2);
+        border-bottom: 2px dashed var(--green);
+        padding-bottom: 0.3rem;
+        display: inline-flex;
+    }
+    @if ($style == h3) {
+        font-size: map-get($fontSize, h3);
+        font-weight: 600;
+        color: var(--green);
+    }
+    @if ($style == h2-crypto) {
+        font-size: map-get($fontSize, h2);
+        text-transform: uppercase;
+    }
+}
+
+//Box for top of the header
+
+@mixin boxTop {
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        width: 15rem;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 2rem;
+            border: 1px solid var(--blue);
+            border-radius: 1.4rem;
+            background-color: var(--box-color);
+            width: 151px;
+            box-shadow: var(--box-shadow);
+            align-items: center;
+            gap: 1.5rem;
+            &__top {
+                display: flex;
+                gap: 1rem;
+                &--content {
+                    display: flex;
+                    flex-direction: column;
+
+                    align-items: center;
+                    .h2 {
+                        @include fontStyle(h2-crypto);
+                    }
+                    span {
+                        height: 3rem;
+                        width: 2rem;
+                        background-image: url(../img/short-dash.svg);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+                    p {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+            &__bottom {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 1.6rem;
+                    height: 1.6rem;
+                }
+
+                p {
+                    margin-left: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+//Mixin for all the boxes contents
+@mixin boxContent($style) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 1px solid var(--blue);
+    border-radius: 1.3rem;
+    box-shadow: var(--box-shadow);
+    background-color: var(--box-color);
+    gap: 2.3rem;
+    
+    @if ($style == 'results'){
+        
+        background-color: var(--blue);
+
+    }
+}
+
+
+//Mixin for title insdie of the boxContent
+
+
+@mixin topTitle {
+
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px dashed var(--blue);
+    padding-bottom: 1.2rem;
+    .h2 {
+        @include fontStyle(h2);
+    }
+    .tag {
+        background-color: var(--green);
+        border-radius: 10rem;
+        padding: 0.5rem 1.3rem;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 0.3rem;
+        display: flex;
+        align-items: center;
+    }
+}
+
+//Mixin for form
+
+@mixin form {
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        .select {
+            background-color: #fff;
+            font-family: inherit;
+            width: 100%;
+            padding: 1.7rem 1rem;
+            color: inherit;
+            border: 1px solid var(--blue);
+            border-radius: 0.3rem;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url(../img/carret-down.svg);
+            background-repeat: no-repeat;
+            background-size: 1.5rem;
+            background-position: 95% center;
+
+            &:focus,
+            &:hover {
+                outline: none;
+            }
+
+            option {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .btn[type='submit'] {
+            background-color: var(--green);
+            border: 0;
+            text-transform: uppercase;
+            padding: 1.7rem;
+            border-radius: 0.3rem;
+            letter-spacing: 0.17rem;
+            font-weight: 600;
+            font-family: var(--title);
+            font-size: 1.6rem;
+            cursor: pointer;
+        
+        }
+        .line{
+            width: 100%;
+            height:3px;
+            border-top: 2px dashed var(--blue);
+        }
+    }
+}

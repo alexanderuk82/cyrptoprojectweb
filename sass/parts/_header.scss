@@ -1,0 +1,29 @@
+@use '../abstracts/' as *;
+
+.header {
+    &__title {
+        @include fontStyle(h1);
+    }
+
+    &__popular {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        &__title {
+            padding-inline: 2rem;
+            .h2 {
+                @include fontStyle(h2-section);
+            }
+            p {
+                margin-top: 1rem;
+                line-height: 2.6rem;
+            }
+        }
+
+        &__boxes {
+            margin-left: 2rem;
+            @include boxTop;
+          
+        }
+    }
+}

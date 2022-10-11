@@ -1,0 +1,76 @@
+include ./component/title-header.pug
+include ./component/boxTop.pug
+include ./component/titleBox.pug 
+include ./component/form.pug 
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title website crypto
+
+        //Styles for slider
+        link(href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" rel="stylesheet")
+
+        //Fonts to use
+        link(href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Source+Code+Pro:wght@500;600;700&display=swap" rel="stylesheet")
+
+
+        link(rel="stylesheet" href="css/style.css")
+    body 
+       
+        header.header
+            h1.header__title overview
+
+            section.header__popular 
+                .header__popular__title 
+                    + title('most popular')
+
+                .header__popular__boxes 
+                  + box 
+
+        main.main
+            .main__operations 
+                .main__operations__top
+                    + topBox('default', 'operations', 'exchange')
+                .main__operations__form
+                   + form
+                .main__operations__results
+                    .main__operations__results__text
+                        p The total value is calculated 
+                        .main__operations__results__text--value 
+                            p for 
+                                span $1 dollar
+                            p to 
+                                span 1 btc
+                    .main__operations__results__total
+                        p total
+                        h2.h2 $10,200
+                
+            .main__results 
+                .main__results__top
+                    + topBox('default', 'results values', 'btc/usd')
+                .main__results__container
+
+                    - const values = [{ title: 'open day', value:0.0635, ico:'openDay'},{ title: 'high day', value:0.70020, ico:'highDay'},{ title: 'low day', value:0.00080, ico:'lowDay'},{ title: 'last update', value:0.01080, ico:'lastUpdate'}]
+                    
+                      each value in values 
+                        .main__results__container__item 
+                            .main__results__container__item--text 
+                                img(src=`../public/img/${value.ico}.svg`)
+                                p=`${value.title}`
+                            .main__results__container__item--value 
+                                p.price=`$${value.value}`
+
+        footer.footer 
+            section.footer__news
+                p news         
+            section.footer__widget
+                p add widget
+        -// Script for swiper slider
+        script(src='https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js')
+
+         -// Main files
+        script(src='../public/main.js') 

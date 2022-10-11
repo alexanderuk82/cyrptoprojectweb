@@ -1,0 +1,88 @@
+@use '../abstracts/' as *;
+
+.footer {
+    padding: 2rem;
+    @include breakpoint(tablet) {
+        display: grid;
+       grid-template-columns: 48.5% 50%;
+        gap: 2rem;
+    }
+    &__news {
+        @include boxContent(default);
+
+        &__top {
+            @include topTitle;
+        }
+
+        &__container {
+            overflow-y: scroll;
+            height: 50rem;
+            margin-right: -1rem;
+            padding-right: 1rem;
+            &::-webkit-scrollbar {
+                width: 2px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(138, 138, 138);
+                border-radius: 20px;
+                border: 1px solid var(--blue);
+            }
+            &::-webkit-scrollbar-track {
+                background-color: rgb(240, 240, 240);
+            }
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            &__article {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                &--img {
+                    img {
+                        width: 100%;
+                    }
+                }
+                .h4 {
+                    @include fontStyle(h4);
+                }
+                p {
+                    display: none;
+                }
+                a {
+                    color: var(--highlight);
+
+                    img {
+                        margin-left: 0.6rem;
+                    }
+                }
+            }
+        }
+    }
+
+    &__widget {
+        display: grid;
+        place-content: center;
+        margin: 3rem 0;
+        &__container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--lightGray);
+            text-transform: uppercase;
+            border: 1px dashed var(--lightGray);
+            height: 24.3rem;
+            width: 24.3rem;
+            border-radius: 18rem;
+            font-family: var(--title);
+            img {
+                width: 6rem;
+            }
+        }
+    }
+}

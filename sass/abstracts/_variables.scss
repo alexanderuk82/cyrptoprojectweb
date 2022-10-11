@@ -6,7 +6,7 @@
     --box-color: hsl(150, 20%, 98%);
     --body: hsl(0, 0%, 97%);
     --highlight: hsl(354, 55%, 64%);
-
+    --lightGray: hsl(0, 3%, 81%);
     // Font to use for
 
     --body: 'Inconsolata', monospace;
@@ -23,6 +23,7 @@ $fontSize: (
     'h1': 4rem,
     'h2': 2.1rem,
     'h3': 2.2rem,
+    'h4': 1.7rem,
     'regular': 1.7rem,
     'price': 2.5rem,
 );

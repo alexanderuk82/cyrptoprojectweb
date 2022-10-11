@@ -6,6 +6,11 @@
     display: flex;
     flex-direction: column;
     gap: 3.4rem;
+
+    @include breakpoint(tablet) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
     &__operations {
         @include boxContent(default);
 
@@ -70,8 +75,13 @@
             gap: 2rem;
             margin: 1rem 0;
             background-image: url(../img/btcBig.svg);
-            background-repeat: no-repeat; 
+            background-repeat: no-repeat;
             padding: 2rem 0;
+
+            @include breakpoint(tablet) {
+                margin-top: 3rem;
+                gap: 4rem;
+            }
             &__item {
                 display: flex;
                 justify-content: space-between;

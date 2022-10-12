@@ -11,10 +11,14 @@
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    @include breakpoint(laptop) {
+        font-size: 70.5%;
+    }
 }
 
 body {
+    position: relative;
     background-color: var(--body);
-    font-size: map-get($fontSize ,regular );
+    font-size: map-get($fontSize, regular);
     font-family: var(--body);
 }

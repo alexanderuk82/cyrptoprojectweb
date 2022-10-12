@@ -1,14 +1,15 @@
 mixin form
     form.form(action="#")
-        select.select
-            option( selected="true" disabled="disabled") Select your currency
-            option( value= 'GBP' name="GBP") British pound
-            option( value= 'USD' name="USD") American Dollars
-            option( value= 'EUR' name="EUR") Euro
-        select.select
-            option( selected="true" disabled="disabled") Select your cryptocurrency
-            //Loaded dynamic
-            //- option( value= 'BTC' name="BTC") British pound
+        .form__field
+            select.select
+                option( selected="true" disabled="disabled") Select your currency
+                option( value= 'GBP' name="GBP") British pound
+                option( value= 'USD' name="USD") American Dollars
+                option( value= 'EUR' name="EUR") Euro
+            select.select
+                option( selected="true" disabled="disabled") Select your cryptocurrency
+                //Loaded dynamic
+                //- option( value= 'BTC' name="BTC") British pound
         button.btn(type="submit") Get price details
         span.line
 

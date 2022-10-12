@@ -12,6 +12,11 @@
         font-size: map-get($fontSize, h2);
         font-weight: 700;
     }
+    @if ($style == error) {
+        font-size: map-get($fontSize, error);
+        color: var(--error);
+        font-weight: 700;
+    }
     @if ($style == h2-section) {
         font-size: map-get($fontSize, h2);
         border-bottom: 2px dashed var(--green);
@@ -45,6 +50,9 @@
         @include breakpoint(tablet) {
             display: flex;
             justify-content: space-between;
+        }
+        @include breakpoint(xl) {
+            gap: 3rem;
         }
     }
     .swiper-slide {
@@ -172,6 +180,16 @@
         flex-direction: column;
         gap: 3rem;
 
+        &__field {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+
+            @include breakpoint(laptop) {
+                flex-direction: row;
+            }
+        }
+
         .select {
             background-color: #fff;
             font-family: inherit;
@@ -224,6 +242,16 @@
 @mixin breakpoint($responsive) {
     @if $responsive == tablet {
         @media (min-width: 56.25em) {
+            @content;
+        }
+    }
+    @if $responsive == laptop {
+        @media (min-width: 75em) {
+            @content;
+        }
+    }
+    @if $responsive == xl {
+        @media (min-width: 86.25em) {
             @content;
         }
     }

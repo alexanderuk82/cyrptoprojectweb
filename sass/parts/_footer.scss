@@ -4,8 +4,12 @@
     padding: 2rem;
     @include breakpoint(tablet) {
         display: grid;
-       grid-template-columns: 48.5% 50%;
+        grid-template-columns: 48.5% 50%;
         gap: 2rem;
+    }
+
+    @include breakpoint(laptop) {
+        grid-template-columns: 70% 30%;
     }
     &__news {
         @include boxContent(default);
@@ -36,26 +40,58 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            @include breakpoint(laptop) {
+                gap: 3rem;
+            }
             &__article {
                 display: flex;
                 flex-direction: column;
                 gap: 1.5rem;
+
+                @include breakpoint(laptop) {
+                    display: grid;
+                    grid-template-columns: 24% 1fr;
+                }
+                &--text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    .h4 {
+                        @include fontStyle(h4);
+                    }
+                    p {
+                        display: none;
+
+                        @include breakpoint(laptop) {
+                            display: block;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 5;
+                            -webkit-box-orient: vertical;
+                        }
+                    }
+                    a {
+                        color: var(--highlight);
+
+                        img {
+                            margin-left: 0.6rem;
+                        }
+                    }
+                    @include breakpoint(laptop) {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                    }
+                }
                 &--img {
                     img {
                         width: 100%;
-                    }
-                }
-                .h4 {
-                    @include fontStyle(h4);
-                }
-                p {
-                    display: none;
-                }
-                a {
-                    color: var(--highlight);
-
-                    img {
-                        margin-left: 0.6rem;
+                        @include breakpoint(laptop) {
+                            width: 100%;
+                            object-fit: cover;
+                            height: 100%;
+                        }
                     }
                 }
             }
@@ -67,6 +103,7 @@
         place-content: center;
         margin: 3rem 0;
         &__container {
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             gap: 3rem;

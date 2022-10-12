@@ -1,0 +1,40 @@
+@use '../abstracts/' as *;
+
+.toast {
+    position: absolute;
+    &__container {
+        display: none;
+        pointer-events: none;
+        background-color: var(--highlight);
+        padding: 2rem;
+        position: fixed;
+        bottom: -17rem;
+        // transition: all 0.3s linear;
+        width: 100%;
+        bottom: 0;
+        animation: up 1s ease;
+        @include breakpoint(tablet) {
+            bottom: 18px;
+            width: 50%;
+            right: 7px;
+            border-radius: 1rem;
+        }
+        @include breakpoint(laptop) {
+            width: 30%;
+        }
+        .h2 {
+            @include fontStyle(error);
+        }
+    }
+}
+
+@keyframes up {
+    0%{
+        transform:translateY(17rem)
+    }
+    100%{
+        
+        transform:translateY(0rem)
+
+    }
+}

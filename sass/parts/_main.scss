@@ -27,6 +27,12 @@
             flex-direction: column;
             gap: 2rem;
 
+            @include breakpoint(laptop) {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
             &__text {
                 &--value {
                     margin-top: 0.5rem;
@@ -81,6 +87,10 @@
             @include breakpoint(tablet) {
                 margin-top: 3rem;
                 gap: 4rem;
+            }
+            @include breakpoint(laptop) {
+                margin-top: 0rem;
+                gap: 2.5rem;
             }
             &__item {
                 display: flex;

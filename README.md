@@ -10,4 +10,4 @@
 
 <p>Any question let me know!</p>
 
-<p><img src="img/Web version weather app.png" widt="80%"></p>
+<p><img src="crypto.jpg" widt="80%"></p>

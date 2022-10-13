@@ -2,6 +2,16 @@ const cryptoField = document.querySelector('#cryptocurrency')
 const currencyField = document.querySelector('#currency')
 const form = document.querySelector('#form')
 
+const openDayMarket = document.getElementById('openDay')
+const highDayMarket = document.getElementById('highDay')
+const lowDayMarket = document.getElementById('lowDay')
+const lastUpdateMarket = document.getElementById('lastUpdate')
+
+const tagResults = document.querySelector('.main__results__top > .tag > span')
+const tagNews = document.querySelector('.footer__news__top > .tag > span')
+
+const footerContainer = document.querySelector('.footer__news__container')
+
 const dataStorage = {
     currency: '',
     cryptocurrency: '',
@@ -118,15 +128,22 @@ function getResultsValue() {
 }
 
 //Inserting data inside of the fields
-const resultContainer = document.querySelector('.main__operations__results')
+const resultContainer = document.querySelector('.main__operations__totals')
 
 function insertValueField(data) {
     clearHtml()
     const { currency, cryptocurrency } = dataStorage
 
+    //Insert tag value top SECTION
+
+    tagResults.textContent = `${cryptocurrency}/${currency}`
+    tagNews.textContent = `${cryptocurrency}/${currency}`
+
     const { TOSYMBOL, PRICE, OPENDAY, HIGHDAY, LOWDAY, LASTUPDATE } = data
 
     //Inserting value total html
+
+    //Form __results
 
     const container = document.createElement('div')
     container.classList.add('main__operations__results')
@@ -150,10 +167,68 @@ function insertValueField(data) {
     // Appending
 
     resultContainer.appendChild(container)
+
+    // iNSERTING DATA ON THE RESULTS SECTION
+    openDayMarket.textContent = `${OPENDAY}`
+    highDayMarket.textContent = `${HIGHDAY}`
+    lowDayMarket.textContent = `${LOWDAY}`
+    lastUpdateMarket.textContent = `${LASTUPDATE}`
+
+    displayNews()
+}
+
+//Display news Data API
+
+function displayNews() {
+    const { currency, cryptocurrency } = dataStorage
+
+    const url = `https://min-api.cryptocompare.com/data/v2/news/?categories=${cryptocurrency},${currency}&excludeCategories=Sponsored`
+
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => insertNews(data.Data))
+}
+
+//Inserting news
+
+function insertNews(data) {
+    clearHtmlNews()
+    const newsContainer = document.createElement('div')
+    newsContainer.classList.add('footer__news__content')
+    data.forEach((crypto, index) => {
+        const { id, imageurl, title, url, body } = crypto
+
+        if (index <= 5) {
+            const article = document.createElement('div')
+            article.classList.add('footer__news__content__article')
+            article.innerHTML = `
+        
+            <div class="footer__news__content__article--img">
+                <img src="${imageurl}" />
+            </div>
+            <div class="footer__news__content__article--text">
+                <h4 class="h4">
+                    ${title}
+                </h4>
+                <p>
+                    ${body}
+                </p>
+                <a href="${url}" target="_blank">Read more 
+                <img src="../public/img/external-link.svg" alt=""/></a>
+            </div>
+                
+        `
+
+            newsContainer.appendChild(article)
+
+            footerContainer.appendChild(newsContainer)
+        }
+    })
 }
 
 function getValue(e) {
     dataStorage[e.target.name] = e.target.value
+
     console.log(dataStorage)
 }
 
@@ -191,5 +266,13 @@ const swiper = new Swiper('.boxSlider', {
 function clearHtml() {
     while (resultContainer.firstChild) {
         resultContainer.removeChild(resultContainer.firstChild)
+    }
+}
+
+//Clear HTML for news result
+
+function clearHtmlNews() {
+    while (footerContainer.firstChild) {
+        footerContainer.removeChild(footerContainer.firstChild)
     }
 }

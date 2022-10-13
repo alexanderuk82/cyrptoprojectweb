@@ -38,7 +38,7 @@ html(lang="en")
                     + topBox('default', 'operations', 'exchange')
                 .main__operations__form
                    + form
-                .main__operations__results
+                .main__operations__totals
                 
             .main__results 
                 .main__results__top
@@ -53,26 +53,14 @@ html(lang="en")
                                 img(src=`../public/img/${value.ico}.svg`)
                                 p=`${value.title}`
                             .main__results__container__item--value 
-                                p.price=`$${value.value}`
-
+                                p.price(id= `${value.ico}`) 
         footer.footer 
             section.footer__news
                 .footer__news__top
 
                      + topBox('default', 'latest news', 'btc')
                 .footer__news__container
-                    .footer__news__content
-
-                        - for (let i=1; i<=6; i++){
-                            article.footer__news__content__article 
-                                div.footer__news__content__article--img
-                                    img(src ='../public/img/img-1.jpg')
-                                .footer__news__content__article--text
-                                    h4.h4 Why Bitcoin-, Ethereum- And Litecoin-Related Stock Coinbase Is Getting Hammered
-                                    p shares are trading lower by 10.34% to $66.27 going into the close of Friday's trading session. Shares of several banks and financial services companies are trading lower amid overall market weakness following better-than-expected U.S...
-                                    a(href="#") Read more
-                                        img(src="../public/img/external-link.svg", alt="") 
-                        - }
+                   
             section.footer__widget
                .footer__widget__container 
                     img(src="../public/img/plus.svg")

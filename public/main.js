@@ -101,8 +101,55 @@ function validate(e) {
         message('All the fields are required, please try again')
         return
     }
+    getResultsValue()
+}
 
-    console.log('pasastes')
+//Getting data Total results
+
+function getResultsValue() {
+    const { currency, cryptocurrency } = dataStorage
+    const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${currency}`
+
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) =>
+            insertValueField(data.DISPLAY[cryptocurrency][currency])
+        )
+}
+
+//Inserting data inside of the fields
+const resultContainer = document.querySelector('.main__operations__results')
+
+function insertValueField(data) {
+    clearHtml()
+    const { currency, cryptocurrency } = dataStorage
+
+    const { TOSYMBOL, PRICE, OPENDAY, HIGHDAY, LOWDAY, LASTUPDATE } = data
+
+    //Inserting value total html
+
+    const container = document.createElement('div')
+    container.classList.add('main__operations__results')
+    container.innerHTML = `
+        
+        <div class="main__operations__results__text">
+            <p>The total value is calculated</p>
+            <div class="main__operations__results__text--value">
+                <p>for <span>${TOSYMBOL}1 ${currency}</span></p>
+                <p>to <span>1 ${cryptocurrency}</span></p>
+            </div>
+        </div>
+        <div class="main__operations__results__total">
+            <p>total</p>
+            <h2 class="h2">${PRICE}</h2>
+        </div>
+        
+        
+        `
+
+    // Appending
+
+    resultContainer.appendChild(container)
 }
 
 function getValue(e) {
@@ -138,3 +185,11 @@ const swiper = new Swiper('.boxSlider', {
     slidesPerView: 'auto',
     spaceBetween: 17,
 })
+
+//Function clear
+
+function clearHtml() {
+    while (resultContainer.firstChild) {
+        resultContainer.removeChild(resultContainer.firstChild)
+    }
+}
